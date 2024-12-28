@@ -19,7 +19,6 @@ namespace Carsales.Services
 
         public async Task<PaginationResult<RickAndMortyObj>> GetEpisodesAsync(int page, int pageSize)
         {
-            // Ajustar el número de página para alinearse con la API (inicia en 1)
             string apiUrl = $"{_settings.ApiBaseUrl}/episode?page={page + 1}";
             var response = await _httpClient.GetAsync(apiUrl);
 
@@ -28,11 +27,9 @@ namespace Carsales.Services
             var content = await response.Content.ReadAsStringAsync();
             var apiResponse = JsonDocument.Parse(content);
 
-            // Obtener el total de páginas directamente de la API
             int totalPages = apiResponse.RootElement.GetProperty("info").GetProperty("pages").GetInt32();
             int totalCount = apiResponse.RootElement.GetProperty("info").GetProperty("count").GetInt32();
 
-            // Obtener los episodios para la página solicitada
             var cars = apiResponse.RootElement.GetProperty("results").EnumerateArray()
                 .Select(e => new RickAndMortyObj
                 {
@@ -46,7 +43,7 @@ namespace Carsales.Services
             return new PaginationResult<RickAndMortyObj>
             {
                 TotalCount = totalCount,
-                TotalPages = totalPages, // Usamos el valor proporcionado por la API
+                TotalPages = totalPages, 
                 Page = page,
                 PageSize = pageSize,
                 Data = cars
