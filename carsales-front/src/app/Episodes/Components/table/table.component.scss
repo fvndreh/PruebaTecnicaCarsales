@@ -1,0 +1,50 @@
+.table-container {
+    margin: 20px auto;
+    max-width: 80%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+  
+    th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    justify-content: end;
+    gap: 0.25rem;
+
+    .pagination-icon{
+        cursor: pointer;
+        align-items: center;
+    }
+
+    .pagination-disabled{
+        cursor: default;
+    }
+
+    .icon {
+      height: 12px;
+      width: 12px;  
+    }
+  
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+  

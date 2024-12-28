@@ -1,0 +1,33 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">{{ column | titlecase }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td *ngFor="let column of columns">{{ row[column] }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <div
+      [ngClass]="{ 'pagination-icon': true, 'pagination-disabled': page === 0 }"
+      (click)="onPreviousPage()"
+    >
+      <img class="icon" src="../../../../assets/arrowLeft.svg" alt="Previous" />
+    </div>
+    <span>Página {{ page + 1 }} de {{ totalPages }}</span>
+    <div
+      (click)="onNextPage()"
+      [ngClass]="{
+        'pagination-icon': true,
+        'pagination-disabled': page+1 >= totalPages
+      }"
+    >
+      <img class="icon" src="../../../../assets/arrowRight.svg" alt="Next" />
+    </div>
+  </div>
+</div>
